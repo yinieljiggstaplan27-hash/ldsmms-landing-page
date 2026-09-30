@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Admin Dashboard — Long Distance Student Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+  </head>
+  <body>
+    <div class="dash-root">
+      <aside class="sidebar">
+        <div class="brand-mini">
+          <img src="assets/logo.svg" alt="logo" />
+          <h3>LD Student System</h3>
+        </div>
+        <nav class="nav">
+          <a class="nav-item nav-btn" href="dashboard.html">Dashboard</a>
+          <a class="nav-item nav-btn-secondary" href="students.html">Students</a>
+          <a class="nav-item" href="courses.html">Courses</a>
+          <a class="nav-item" href="enrollments.html">Enrollments</a>
+          <a class="nav-item" href="assignments.html">Assignments</a>
+          <a class="nav-item" href="student-map.html">Map</a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <header class="main-head">
+          <div class="head-row">
+            <div>
+              <div class="outer-title">LEARNING OPERATIONS</div>
+              <h1>Dashboard</h1>
+              <div class="main-sub">A clear view of your long-distance learning community</div>
+            </div>
+            <div class="head-actions">
+              <a class="btn-secondary" href="index.html">HOME</a>
+              <button class="btn-primary icon">Add Student</button>
+            </div>
+          </div>
+        </header>
+
+        <div class="hero-banner">
+          <div class="hero-content">
+            <div style="font-size:12px;opacity:0.9;letter-spacing:0.6px">FRIDAY, SEPTEMBER 25</div>
+            <h2>Welcome back, Administrator</h2>
+            <p>Monitor students, coordinate courses, and keep your learning community moving forward.</p>
+          </div>
+          <div class="hero-graphic">🎓</div>
+        </div>
+
+        <section class="stats">
+          <article class="stat-card">
+            <p class="stat-label">Total Students</p>
+            <p class="stat-value">8,432</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-label">Active Courses</p>
+            <p class="stat-value">124</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-label">Enrollments</p>
+            <p class="stat-value">18,210</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-label">Avg. Attendance</p>
+            <p class="stat-value">87%</p>
+          </article>
+        </section>
+
+        <section class="panels">
+          <div class="panel recent">
+            <div class="panel-head">
+              <h3>Recent Students</h3>
+            </div>
+            <ul class="student-list">
+              <li class="student-row">
+                <img src="assets/avatar.svg" alt="A" class="avatar">
+                <div class="meta"><strong>Amelia Johnson</strong><span class="muted">amelia.j@edu.org</span></div>
+                <span class="badge online">Enrolled</span>
+              </li>
+              <li class="student-row">
+                <img src="assets/avatar.svg" alt="B" class="avatar">
+                <div class="meta"><strong>Ben Osei</strong><span class="muted">ben.osei@edu.org</span></div>
+                <span class="badge offline">Pending</span>
+              </li>
+              <li class="student-row">
+                <img src="assets/avatar.svg" alt="C" class="avatar">
+                <div class="meta"><strong>Carmen Ruiz</strong><span class="muted">c.ruiz@edu.org</span></div>
+                <span class="badge online">Enrolled</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="panel catalog">
+            <div class="panel-head">
+              <h3>Course Catalog</h3>
+            </div>
+            <div class="courses">
+              <div class="course">
+                <h4>Intro to Remote Teaching</h4>
+                <p class="muted">Students: 420</p>
+              </div>
+              <div class="course">
+                <h4>Data Literacy</h4>
+                <p class="muted">Students: 312</p>
+              </div>
+              <div class="course">
+                <h4>Assessment Strategies</h4>
+                <p class="muted">Students: 198</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="nav.js"></script>
+  </body>
+</html>

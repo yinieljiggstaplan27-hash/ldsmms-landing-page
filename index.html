@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">    
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sign In — Long Distance Student Management and Monitoring System</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="login"  background="assets/hero-bg.jpg">
+    <div class="container">
+      <aside class="brand">
+        <div class="brand-inner">
+          <img src="assets/logo.svg" alt="LD Student System logo" class="logo">
+          <div class="brand-copy">
+            <h1 class="title">Long Distance Student Management<br>&amp; Monitoring System</h1>
+            <p class="tagline">Monitor, support, and empower distance learners worldwide.</p>
+          </div>
+        </div>
+      </aside>
+
+      <main class="signin">
+        <div class="card" aria-labelledby="signin-heading">
+          <h2 id="signin-heading">Welcome back</h2>
+          <p class="card-sub">Sign in to manage students, courses and assignments.</p>
+
+          <form class="signin-form" action="dashboard.html" method="post">
+            <label class="field">
+              <span class="label-text">Email</span>
+              <input type="email" name="email" placeholder="you@example.com" required>
+            </label>
+
+            <label class="field">
+              <span class="label-text">Password</span>
+              <input type="password" name="password" placeholder="••••••••" required>
+            </label>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:#556172"><input type="checkbox" name="remember"> Remember me</label>
+              <a class="forgot-link" href="#">Forgot?</a>
+            </div>
+
+            <button type="submit" class="btn-primary">Sign In</button>
+          </form>
+
+          <div class="alt-actions">
+            <div class="or">or continue with</div>
+            <div class="socials">
+              <button class="social-btn">Sign in with Google</button>
+              <button class="social-btn">Sign in with Microsoft</button>
+            </div>
+          </div>
+
+          <p class="demo-note">Demo account: <strong>demo@school.edu</strong> / <strong>password</strong></p>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

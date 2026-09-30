@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Enrollments — Admin — LD Student System</title>
+    <link rel="stylesheet" href="dashboard.css">
+  </head>
+  <body>
+    <div class="dash-root">
+      <aside class="sidebar">
+        <div class="brand-mini">
+          <img src="assets/logo.svg" alt="logo" />
+          <h3>LD Student System</h3>
+        </div>
+        <nav class="nav">
+          <a class="nav-item nav-btn" href="dashboard.html">Dashboard</a>
+          <a class="nav-item nav-btn-secondary" href="students.html">Students</a>
+          <a class="nav-item" href="courses.html">Courses</a>
+          <a class="nav-item" href="enrollments.html">Enrollments</a>
+          <a class="nav-item" href="assignments.html">Assignments</a>
+          <a class="nav-item" href="student-map.html">Map</a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <header class="main-head">
+          <h1>Enrollments</h1>
+          <div class="head-actions">
+            <button class="btn-primary icon">Add Enrollment</button>
+          </div>
+        </header>
+
+        <div class="toolbar">
+          <div class="search"><input placeholder="Filter by student or course"></div>
+          <div class="chips">
+            <div class="chip active">All</div>
+            <div class="chip">In Progress</div>
+            <div class="chip">Completed</div>
+            <div class="chip">Dropped</div>
+          </div>
+        </div>
+
+        <div style="overflow:auto">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Course</th>
+                <th>Enrolled</th>
+                <th>Progress</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Amelia Johnson</td>
+                <td>Data Literacy</td>
+                <td>2026-09-12</td>
+                <td style="width:260px">
+                  <div class="progress-wrap"><div class="progress" style="width:72%"></div></div>
+                </td>
+              </tr>
+              <tr>
+                <td>Ben Osei</td>
+                <td>Assessment Strategies</td>
+                <td>2026-08-01</td>
+                <td><div class="progress-wrap"><div class="progress amber" style="width:34%"></div></div></td>
+              </tr>
+              <tr>
+                <td>Carmen Ruiz</td>
+                <td>Intro to Remote Teaching</td>
+                <td>2026-07-20</td>
+                <td><div class="progress-wrap"><div class="progress" style="width:95%"></div></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+    <script src="nav.js"></script>
+  </body>
+</html>

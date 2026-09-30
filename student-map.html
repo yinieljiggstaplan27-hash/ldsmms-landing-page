@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Student Map — LD Student System</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+      #map{height:100%;width:100%}
+      .pin-number{color:#fff;font-weight:700;font-size:12px;pointer-events:none}
+      /* place name labels next to markers */
+      .leaflet-tooltip.place-label{background:rgba(255,255,255,0.92);color:#071228;border-radius:8px;padding:6px 10px;font-weight:700;font-size:13px;box-shadow:0 8px 20px rgba(6,18,40,0.08);white-space:nowrap}
+
+      /* Blue numeric pin with white border and small orange badge */
+      .custom-pin .pin{position:relative;width:42px;height:42px}
+      .custom-pin .pin-circle{width:42px;height:42px;border-radius:50%;background:#1e88ff;border:4px solid #fff;box-shadow:0 6px 18px rgba(6,18,40,0.18);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+      .custom-pin .pin-badge{position:absolute;right:-6px;top:-6px;background:#ffb020;color:#fff;border-radius:999px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;border:2px solid #fff}
+
+      /* Red center teardrop pin */
+      .center-pin .center-pin-ico{width:30px;height:38px;background:radial-gradient(circle at 50% 35%, #ff6666 0%, #d33 50%);border-radius:50% 50% 50% 50%/45% 45% 55% 55%;border:3px solid #fff;box-shadow:0 8px 20px rgba(6,18,40,0.18);transform:translateY(-4px)}
+
+      /* Bottom-left location box like the screenshot */
+      .leaflet-control.location-box{background:rgba(255,255,255,0.98);padding:10px 14px;border-radius:12px;box-shadow:0 12px 30px rgba(6,18,40,0.12);font-weight:700;color:#071228}
+    </style>
+  </head>
+  <body>
+    <div class="dash-root">
+      <aside class="sidebar">
+        <div class="brand-mini">
+          <img src="assets/logo.svg" alt="logo" />
+          <h3>LD Student System</h3>
+        </div>
+        <nav class="nav">
+          <a class="nav-item nav-btn" href="dashboard.html">Dashboard</a>
+          <a class="nav-item nav-btn-secondary" href="students.html">Students</a>
+          <a class="nav-item" href="courses.html">Courses</a>
+          <a class="nav-item" href="enrollments.html">Enrollments</a>
+          <a class="nav-item" href="assignments.html">Assignments</a>
+          <a class="nav-item" href="student-map.html">Map</a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <header class="main-head">
+          <h1>Student Map — Tupi, South Cotabato</h1>
+          <div class="head-actions">
+            <button class="btn-primary icon">Add Student</button>
+          </div>
+        </header>
+
+        <section class="map-layout">
+          <div class="map-container" id="map"></div>
+
+          <aside class="right-panel">
+            <h3>Recent Activity / Student Directory</h3>
+            <ul style="list-style:none;padding:0;margin:12px 0;display:flex;flex-direction:column;gap:10px">
+              <li style="display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;background:#34d399;border-radius:999px;display:inline-block"></span><strong>Amelia Johnson</strong><div class="muted">Last seen 2m ago</div></li>
+              <li style="display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;background:#34d399;border-radius:999px;display:inline-block"></span><strong>Ben Osei</strong><div class="muted">Last seen 5m ago</div></li>
+              <li style="display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;background:#94a3b8;border-radius:999px;display:inline-block"></span><strong>Carmen Ruiz</strong><div class="muted">Last seen 1h ago</div></li>
+            </ul>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      // Center on Tupi, South Cotabato (approx coords)
+      const map = L.map('map').setView([6.3, 125.0], 11);
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{
+        attribution: 'Tiles &copy; Esri'
+      }).addTo(map);
+
+      const students = [
+        { name: 'Amelia Johnson', lat:6.354, lng:124.986, online:true },
+        { name: 'Ben Osei', lat:6.317, lng:125.021, online:true },
+        { name: 'Carmen Ruiz', lat:6.289, lng:124.973, online:false }
+      ];
+
+      students.forEach((s,i)=>{
+        const el = L.divIcon({
+          className: 'custom-pin',
+          html: `<div class="pin"><div class="pin-circle"></div><div class="pin-badge">${i+1}</div></div>`,
+          iconSize:[42,42],
+          iconAnchor:[21,42]
+        });
+        const marker = L.marker([s.lat,s.lng],{icon:el}).addTo(map);
+        marker.bindPopup(`<strong>${s.name}</strong><div>${s.online? 'Online' : 'Last seen 1h ago'}</div>`);
+        marker.bindTooltip(s.name, {permanent:true, direction:'right', offset:[12,0], className:'place-label'});
+      });
+
+      // Add a red center pin for the town (Tupi)
+      const centerIcon = L.divIcon({
+        className:'center-pin',
+        html: `<div class="center-pin-ico"></div>`,
+        iconSize:[30,38],
+        iconAnchor:[15,38]
+      });
+      const centerMarker = L.marker([6.3,125.0],{icon:centerIcon}).addTo(map);
+      centerMarker.bindTooltip('<strong>Tupi</strong>', {permanent:true, direction:'bottom', offset:[0,8], className:'place-label'});
+
+      // Add a bottom-left location box control
+      const LocationControl = L.Control.extend({
+        onAdd: function(map){
+          const el = L.DomUtil.create('div','leaflet-control location-box');
+          el.innerText = 'Tupi, South Cotabato';
+          return el;
+        }
+      });
+      map.addControl(new LocationControl({position:'bottomleft'}));
+    </script>
+    <script src="nav.js"></script>
+  </body>
+</html>
